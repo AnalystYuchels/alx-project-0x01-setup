@@ -6,11 +6,12 @@ import { useState } from "react";
 
 const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [newPost, setNewPost] = useState<PostData | null>(null);
+  const [post, setPost] = useState<PostData | null>(null);
 
-  const handleAddPost = (post: PostData) => {
-    setNewPost({ ...post, id: posts.length + 1 });
+  const handleAddPost = (newPost: PostData) => {
+    setPost({ ...newPost, id: posts.length + 1 });
   };
+  
 
   return (
     <div className="flex flex-col h-screen">
@@ -29,14 +30,15 @@ const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
           {posts.map(({ title, body, userId, id }, key) => (
             <PostCard title={title} body={body} userId={userId} id={id} key={key} />
           ))}
-          {newPost && (
+          {post && (
             <PostCard
-              title={newPost.title}
-              body={newPost.body}
-              userId={newPost.userId}
-              id={newPost.id || posts.length + 1}
+              title={post.title}
+              body={post.body}
+              userId={post.userId}
+              id={post.id || posts.length + 1}
             />
           )}
+
         </div>
       </main>
 
