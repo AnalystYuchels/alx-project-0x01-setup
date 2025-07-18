@@ -3,17 +3,17 @@ import UserCard from "@/components/common/UserCard";
 import { UserProps } from "@/interfaces";
 
 const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
-  console.log(users)
+  console.log(users);
   return (
     <div className="flex flex-col h-screen">
       <Header />
       <main className="p-4">
         <div className="flex justify-between">
-          <h1 className=" text-2xl font-semibold">Users List</h1>
+          <h1 className="text-2xl font-semibold">Users List</h1>
           <button className="bg-purple-700 px-4 py-2 rounded-full text-white">Add User</button>
         </div>
         <div className="grid grid-cols-3 gap-2">
-          {users?.map((user, key) => (
+          {users.map((user, key) => (
             <UserCard key={key} {...user} />
           ))}
         </div>
@@ -28,9 +28,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      users
-    }
-  }
+      users,
+    },
+  };
 }
 
 export default Users;
